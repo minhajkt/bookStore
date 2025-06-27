@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { HTTP_STATUS } from "../constants/httpStatus";
 import { MESSAGES } from "../constants/messages";
 import { verifyAccessToken } from "../utils/jwt";
+import { JwtPayload } from "../types/jwt";
 
 export const authenticateJWT = async (
   req: Request,
@@ -26,6 +27,6 @@ export const authenticateJWT = async (
     return;
   }
 
-  (req as any).user = decoded;
+  req.user = decoded as JwtPayload;
   next();
 };

@@ -7,7 +7,18 @@ export const MESSAGES = {
     PASSWORD_NOT_MATCH: "Password does not match",
     NOT_FOUND: "User not found",
     INVALID_CREDENTIALS: "Invalid email or password",
-    LOGIN_SUCCESS: "User login successful"
+    LOGIN_SUCCESS: "User login successful",
+    UNAUTHORIZED: "Unauthorized"
+  },
+  BOOK: {
+    CREATED: "Book created successfully",
+    TITLE_REQUIRED: "Please enter a valid title",
+    TITLE_EXISTS: "Book with this title already exists",
+    DESCRIPTION_REQUIRED: "Please enter a valid description",
+    PRORER_PRICE: "Please enter a price rangin in 100 - 1000",
+    NO_AUTHOR: "Author is required",
+    NOT_FOUND: "Book not found",
+    FOUND: "Book found"
   },
   SERVER: {
     ERROR: "Something went wrong",

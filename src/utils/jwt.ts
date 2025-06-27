@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config/env.config";
+import { JwtPayload } from "../types/jwt";
 
 const ACCESS_SECRET = config.accessToken!;
 const REFRESH_SECRET = config.refreshToken!;
@@ -20,9 +21,13 @@ export const verifyAccessToken = (token: string) => {
   }
 };
 
-export const verifyRefreshToken = (token: string) => {
+export const verifyRefreshToken = (token: string):JwtPayload | null => {
   try {
-    return jwt.verify(token, REFRESH_SECRET);
+    const decoded = jwt.verify(
+      token,
+      ACCESS_SECRET!
+    ) as JwtPayload;
+    return decoded;
   } catch {
     return null;
   }

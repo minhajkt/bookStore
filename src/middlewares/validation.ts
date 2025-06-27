@@ -27,6 +27,14 @@ export const validateLoginUser = [
     .withMessage("Password must be at least 6 characters"),
 ];
   
+export const validateCreateBook = [
+  body("title").notEmpty().withMessage("Title is required"),
+  body("description").notEmpty().withMessage("Description is required"),
+  body("price")
+    .isFloat({ min: 100, max: 1000 })
+    .withMessage("Price must be between 100 and 1000"),
+];
+
 
 export const validateRequest = (
   req: Request,

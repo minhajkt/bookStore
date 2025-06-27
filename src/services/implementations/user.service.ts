@@ -1,6 +1,6 @@
 import { HTTP_STATUS } from "../../constants/httpStatus";
 import { MESSAGES } from "../../constants/messages";
-import { AppError } from "../../errors/appError";
+import { AppError } from "../../errors/AppError";
 import { IUser } from "../../models/user.model";
 import { IUserRepository } from "../../repositories/interfaces/iuser.repository";
 import { generateAccessToken, generateRefreshToken } from "../../utils/jwt";
