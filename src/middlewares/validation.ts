@@ -8,10 +8,25 @@ export const validateCreateUser = [
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters"),
   body("role")
-    .isIn(["admin", "author", "buyer"])
-    .withMessage("Role must be admin, author, or buyer"),
+    .isIn(["author", "buyer"])
+    .withMessage("Role must be author, or buyer"),
+
+  body('confirmPassword')
+    .custom((value, {req}) => {
+        if(value !== req.body.password) {
+            throw new Error("Passwords does not match")
+        }
+        return true
+    })  
 ];
 
+export const validateLoginUser = [
+  body("email").isEmail().withMessage("Valid email is required"),
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters"),
+];
+  
 
 export const validateRequest = (
   req: Request,

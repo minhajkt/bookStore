@@ -17,4 +17,20 @@ export class UserController {
             next(error)
         }
     }
+    
+    async login(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const {user, accessToken, refreshToken} = await this.userService.login(req.body)
+            res.cookie("refreshToken", refreshToken, {
+              httpOnly: true,
+              secure: process.env.NODE_ENV === "production",
+              sameSite: "strict",
+              maxAge: 7 * 24 * 60 * 60 * 1000, 
+            });
+
+            res.status(HTTP_STATUS.OK).json({message: MESSAGES.USER.LOGIN_SUCCESS, accessToken, user})
+        } catch (error) {
+            next(error)
+        }
+    }
 }

@@ -10,7 +10,7 @@ export const errorHandler = (
 ) => {
   console.error(err);
 
-  res.status(err.status || HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+  res.status(err.statusCode || HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
     error: err.message || MESSAGES.SERVER.ERROR,
   });
 };
