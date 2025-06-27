@@ -10,7 +10,7 @@ export class BookRepository extends BaseRepository<IBook> implements IBookReposi
   }
 
   async findById(id: string): Promise<IBook | null> {
-    return this.findById(id);
+    return BookModel.findById(id);
   }
 
   async findAll(filter: FilterQuery<IBook> = {}): Promise<IBook[]> {

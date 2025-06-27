@@ -5,7 +5,6 @@ import { IBook } from "../../models/books.model";
 import counterModel from "../../models/counter.model";
 import { IBookRepository } from "../../repositories/interfaces/ibook.repository";
 import { IBookService} from "../interfaces/ibook.service";
-import slugify from 'slugify'
 import { IUserRepository } from "../../repositories/interfaces/iuser.repository";
 import { generateUniqueSlug } from "../../utils/slug";
 import { AppError } from "../../errors/AppError";

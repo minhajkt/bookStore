@@ -35,6 +35,18 @@ export const validateCreateBook = [
     .withMessage("Price must be between 100 and 1000"),
 ];
 
+export const validatePurchase = [
+  body("bookId")
+    .notEmpty()
+    .withMessage("Book ID is required")
+    .isMongoId()
+    .withMessage("Invalid Book ID"),
+  body("quantity")
+    .notEmpty()
+    .withMessage("Quantity is required")
+    .isInt({ min: 1 })
+    .withMessage("Quantity must be at least 1"),
+];
 
 export const validateRequest = (
   req: Request,

@@ -6,6 +6,7 @@ import { config } from "./config/env.config";
 import { errorHandler } from "./middlewares/errorHandler";
 import userRoutes from "./routes/user.routes";
 import bookRoutes from "./routes/book.routes";
+import purchaseRoutes from "./routes/purchase.routes";
 
 
 const app = express();
@@ -27,6 +28,7 @@ const port = config.port || 3000;
 
 app.use("/api/users", userRoutes);
 app.use("/api/books", bookRoutes);
+app.use("/api/purchase", purchaseRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello world");

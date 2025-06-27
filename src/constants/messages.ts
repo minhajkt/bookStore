@@ -8,7 +8,7 @@ export const MESSAGES = {
     NOT_FOUND: "User not found",
     INVALID_CREDENTIALS: "Invalid email or password",
     LOGIN_SUCCESS: "User login successful",
-    UNAUTHORIZED: "Unauthorized"
+    UNAUTHORIZED: "Unauthorized",
   },
   BOOK: {
     CREATED: "Book created successfully",
@@ -18,7 +18,7 @@ export const MESSAGES = {
     PRORER_PRICE: "Please enter a price rangin in 100 - 1000",
     NO_AUTHOR: "Author is required",
     NOT_FOUND: "Book not found",
-    FOUND: "Book found"
+    FOUND: "Book found",
   },
   SERVER: {
     ERROR: "Something went wrong",
@@ -26,5 +26,9 @@ export const MESSAGES = {
   TOKEN: {
     NO_ACCESS_TOKEN: "No access token found",
     INVALID_ACCESS_TOKEN: "Invalid access token",
+  },
+  PURCHASE: {
+    CREATED: "Purchase completed successfully",
+    NO_ID_QUANTITY: "Book ID and quantity are required",
   },
 };
