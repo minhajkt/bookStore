@@ -7,7 +7,9 @@ import { errorHandler } from "./middlewares/errorHandler";
 import userRoutes from "./routes/user.routes";
 import bookRoutes from "./routes/book.routes";
 import purchaseRoutes from "./routes/purchase.routes";
-
+import revenueRoutes from "./routes/revenue.routes";
+import './jobs/dailyDigest.job'
+import './jobs/monthlyDigest.job'
 
 const app = express();
 
@@ -29,6 +31,8 @@ const port = config.port || 3000;
 app.use("/api/users", userRoutes);
 app.use("/api/books", bookRoutes);
 app.use("/api/purchase", purchaseRoutes);
+app.use("/api/revenue", revenueRoutes);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello world");

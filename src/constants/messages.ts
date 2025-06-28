@@ -30,6 +30,10 @@ export const MESSAGES = {
   PURCHASE: {
     CREATED: "Purchase completed successfully",
     NO_ID_QUANTITY: "Book ID and quantity are required",
-    FETCHED : "User purchases fetched"
+    FETCHED: "User purchases fetched",
+  },
+  REVENUE: {
+    FETCHED: "Revenue fetched successfully",
+    FETCHED_TOTAL: "Total revenue fetched successfully",
   },
 };

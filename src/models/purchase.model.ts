@@ -7,6 +7,8 @@ export interface IPurchase extends Document {
   purchaseDate: Date;
   price: number;
   quantity: number;
+  createdAt: Date; 
+  updatedAt: Date;
 }
 
 const PurchaseSchema = new Schema<IPurchase>(

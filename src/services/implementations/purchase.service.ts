@@ -8,14 +8,21 @@ import { IPurchaseService } from "../interfaces/ipurchase.service";
 import counterModel from "../../models/counter.model";
 import { generatePurchaseId } from "../../utils/generatedPurchaseId";
 import mongoose from "mongoose";
+import { IRevenueRepository } from "../../repositories/interfaces/irevenue.repository";
 
 export class PurchaseService implements IPurchaseService {
   private purchaseRepo: IPurchaseRepository;
   private bookRepo: IBookRepository;
+  private revenueRepo: IRevenueRepository;
 
-  constructor(purchaseRepo: IPurchaseRepository, bookRepo: IBookRepository) {
+  constructor(
+    purchaseRepo: IPurchaseRepository,
+    bookRepo: IBookRepository,
+    revenueRepo: IRevenueRepository
+  ) {
     this.purchaseRepo = purchaseRepo;
     this.bookRepo = bookRepo;
+    this.revenueRepo = revenueRepo
   }
 
   async purchaseBook(
@@ -50,6 +57,16 @@ export class PurchaseService implements IPurchaseService {
       { _id: new mongoose.Types.ObjectId(bookId) },
       { $inc: { sellCount: quantity } }
     );
+
+    const share = price / book.authors.length;
+    for (const authorId of book.authors) {
+      await this.revenueRepo.create({
+        authorId: new mongoose.Types.ObjectId(authorId),
+        purchaseId: newPurchase._id as mongoose.Types.ObjectId,
+        bookId: book._id as mongoose.Types.ObjectId,
+        amount: share,
+      });
+    }
 
     return newPurchase;
   }
