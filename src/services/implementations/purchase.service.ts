@@ -4,11 +4,10 @@ import { AppError } from "../../errors/AppError";
 import { IPurchase } from "../../models/purchase.model";
 import { IBookRepository } from "../../repositories/interfaces/ibook.repository";
 import { IPurchaseRepository } from "../../repositories/interfaces/ipurchase.repository";
-import { IPurchaseService } from "../interfaces/purchase.service";
+import { IPurchaseService } from "../interfaces/ipurchase.service";
 import counterModel from "../../models/counter.model";
 import { generatePurchaseId } from "../../utils/generatedPurchaseId";
 import mongoose from "mongoose";
-
 
 export class PurchaseService implements IPurchaseService {
   private purchaseRepo: IPurchaseRepository;
@@ -35,7 +34,7 @@ export class PurchaseService implements IPurchaseService {
       { new: true, upsert: true }
     );
 
-    const purchaseId = generatePurchaseId(counter.seq)
+    const purchaseId = generatePurchaseId(counter.seq);
     const price = book.price * quantity;
 
     const newPurchase = await this.purchaseRepo.create({
@@ -47,6 +46,15 @@ export class PurchaseService implements IPurchaseService {
       quantity,
     });
 
+    await this.bookRepo.updateOne(
+      { _id: new mongoose.Types.ObjectId(bookId) },
+      { $inc: { sellCount: quantity } }
+    );
+
     return newPurchase;
+  }
+
+  async getUserPurchases(userId: string): Promise<IPurchase[]> {
+    return await this.purchaseRepo.findByUserId(userId);
   }
 }

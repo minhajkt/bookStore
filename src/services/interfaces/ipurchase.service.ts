@@ -6,4 +6,5 @@ export interface IPurchaseService {
     bookId: string,
     quantity: number
   ): Promise<IPurchase>;
+  getUserPurchases(userId: string): Promise<IPurchase[]>;
 }

@@ -1,4 +1,4 @@
-import { Document, FilterQuery, Model } from "mongoose";
+import { Document, FilterQuery, Model, UpdateQuery } from "mongoose";
 
 export interface IBaseRepository<T extends Document> {
   create(data: Partial<T>): Promise<T>;
@@ -6,7 +6,7 @@ export interface IBaseRepository<T extends Document> {
   findOne(filter: FilterQuery<T>): Promise<T | null>;
   findAll(filter?: FilterQuery<T>): Promise<T[]>;
   update(id: string, data: Partial<T>): Promise<T | null>;
-  updateOne(filter: FilterQuery<T>, data: Partial<T>): Promise<T | null>;
+  updateOne(filter: FilterQuery<T>, update: UpdateQuery<T>): Promise<T | null>;
   delete(id: string): Promise<T | null>;
 }
 
@@ -38,8 +38,11 @@ export class BaseRepository<T extends Document> {
     return await this.model.findByIdAndUpdate(id, data, { new: true });
   }
 
-  async updateOne(filter: FilterQuery<T>, data: Partial<T>): Promise<T | null> {
-    return await this.model.findOneAndUpdate(filter, data, { new: true });
+  async updateOne(
+    filter: FilterQuery<T>,
+    update: UpdateQuery<T>
+  ): Promise<T | null> {
+    return await this.model.findOneAndUpdate(filter, update, { new: true });
   }
 
   async delete(id: string): Promise<T | null> {

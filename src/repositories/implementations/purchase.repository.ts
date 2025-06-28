@@ -11,7 +11,14 @@ export class PurchaseRepository
   }
 
   async findByUserId(userId: string): Promise<IPurchase[]> {
-    return this.findAll({ userId });
+    return await PurchaseModel.find({ userId }).populate({
+        path: "bookId",
+        select: 'title description authors',
+        populate : {
+            path : 'authors',
+            select : 'name'
+        }
+    });
   }
 
   async findByBookId(bookId: string): Promise<IPurchase[]> {
