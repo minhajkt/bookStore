@@ -10,6 +10,7 @@ import purchaseRoutes from "./routes/purchase.routes";
 import revenueRoutes from "./routes/revenue.routes";
 import './jobs/dailyDigest.job'
 import './jobs/monthlyDigest.job'
+import './jobs/bookReleaseDigest.job'
 
 const app = express();
 

@@ -27,7 +27,7 @@ export const sendMonthlyRevenueDigest = async () => {
       year
     );
 
-    console.log(`➡️ Revenue for ${monthName} ${year}: ₹${amount}`);
+    console.log(`Revenue for ${monthName} ${year}: ₹${amount}`);
 
     if (amount === 0) {
       console.log("No revenue, skipping email.");

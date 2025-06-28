@@ -4,8 +4,8 @@ import { sendDailyAuthorDigest } from "./dailyAuthorDigest.job";
 console.log("Cron job file loaded");
 
 cron.schedule(
-  "*/5 * * * *",
-  //   "0 8 * * *",
+    "0 8 * * *",
+//   "*/5 * * * *",
   async () => {
     console.log(
       "Starting Daily Author Digest Cron Job...",

@@ -6,8 +6,10 @@ export interface IBook extends Document {
   slug: string;
   description: string;
   price: number;
-  authors: mongoose.Types.ObjectId[]; 
+  authors: mongoose.Types.ObjectId[];
   sellCount: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const BookSchema = new Schema<IBook>(
